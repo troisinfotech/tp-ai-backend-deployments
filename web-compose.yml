@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  surveil-ai-web-device:
+    image: registry.smartgms.in/product/surveilai-web:device
+    container_name: surveil-ai-web-device
+    ports:
+      - 3000:80
+    restart: always
