@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  tp-ai-backend-service:
+    image: registry.smartgms.in/product/tp-ai-backend-service:dev
+    ports:
+      - "8080:8080"
+    restart: always
+    container_name: tp-ai-backend-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JWT_SECRET_KEY=sRk+BUPNXEKDy8JQnfHdkGZ3ErZOtM8YoTqMkUha7qY=
+      - EXPIRY_IN_MINUTES=60
+      - REFRESH_TOKEN_EXPIRY_IN_MINUTES=1440
+      - MASTER_DB_JDBC_URL=jdbc:postgresql://pg-master:5432/tp_analytics_db
+      - MASTER_DB_USER_NAME=tpuser
+      - MASTER_DB_PASSWORD=LfrnUtVxwfbXFr9w
+      - SLAVE_DB_JDBC_URL=jdbc:postgresql://pg-slave:5432/tp_analytics_db
+      - SLAVE_DB_USER_NAME=tpuser
+      - SLAVE_DB_PASSWORD=LfrnUtVxwfbXFr9w
+      - RABBITMQ_PRODUCER_ENABLED=false
+      - RABBITMQ_CONSUMER_ENABLED=false
+      - RABBITMQ_MAX_CONCURRENCY=0
+      - RABBITMQ_CONCURRENCY=0
+      - RABBITMQ_PREFETCH=1
+      - ZMQ_ENABLED=true
+      - ZMQ_URL=tcp://192.168.134.253:6000
+      - RABBITMQ_IP=192.168.134.129
+      - RABBITMQ_PORT= 30672
+      - RABBITMQ_USER=user
+      - RABBITMQ_PASSWORD=bitnami
+    networks:
+      - tp_network
+
+networks:
+  tp_network:
+   external: true

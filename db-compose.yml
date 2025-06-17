@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  postgresql:
+    image: bitnami/postgresql:latest
+    restart: always
+    hostname: pg-master
+    container_name: pg-master
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=GvrnMeAxwfbKFr4w
+      - POSTGRESQL_POSTGRES_PASSWORD=GvrnMeAxwfbKFr4w
+      - POSTGRESQL_DATABASE=postgres
+    ports:
+      - 5432:5432
+    configs:
+      - source: pg_extended_conf
+        target: /opt/bitnami/postgresql/conf/conf.d/extended.conf
+    volumes:
+      - /opt/deployments/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - postgresql_data:/bitnami/postgresql
+    networks:
+      - tp_network
+
+configs:
+  pg_extended_conf:
+    file: /opt/deployments/postgres/extended.conf
+
+volumes:
+  postgresql_data:
+    external: true
+
+networks:
+  tp_network:
+    external: true
