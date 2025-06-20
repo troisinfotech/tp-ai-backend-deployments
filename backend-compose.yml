@@ -15,10 +15,7 @@ services:
       - MASTER_DB_JDBC_URL=jdbc:postgresql://pg-master:5432/tp_analytics_db
       - MASTER_DB_USER_NAME=tpuser
       - MASTER_DB_PASSWORD=LfrnUtVxwfbXFr9w
-      - SLAVE_DB_JDBC_URL=jdbc:postgresql://pg-slave:5432/tp_analytics_db
-      - SLAVE_DB_USER_NAME=tpuser
-      - SLAVE_DB_PASSWORD=LfrnUtVxwfbXFr9w
-      - RABBITMQ_PRODUCER_ENABLED=false
+      - RABBITMQ_PRODUCER_ENABLED=true
       - RABBITMQ_CONSUMER_ENABLED=false
       - RABBITMQ_MAX_CONCURRENCY=0
       - RABBITMQ_CONCURRENCY=0
@@ -29,9 +26,17 @@ services:
       - RABBITMQ_PORT= 30672
       - RABBITMQ_USER=user
       - RABBITMQ_PASSWORD=bitnami
+      - RESOURCE_BASE_DIR=/opt/multimedia
     networks:
       - tp_network
+
+    volumes:
+      - tp_resource_data:/opt/multimedia
 
 networks:
   tp_network:
    external: true
+
+volumes:
+  tp_resource_data:
+    external: true

@@ -2,8 +2,16 @@ version: '3.8'
 
 services:
   surveil-ai-web-device:
-    image: registry.smartgms.in/product/surveilai-web:device
+    image: registry.smartgms.in/product/surveilai-web:latest
     container_name: surveil-ai-web-device
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
+      - VITE_USER_API_URL=${VITE_USER_API_URL}
+      - VITE_MASTER_API_URL=${VITE_MASTER_API_URL}
+      - VITE_ANALYTICS_API_URL=${VITE_ANALYTICS_API_URL}
+      - VITE_LICENCE_API_URL=${VITE_LICENCE_API_URL}
     ports:
       - 3000:80
     restart: always
+
+
