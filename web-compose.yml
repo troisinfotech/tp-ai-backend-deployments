@@ -5,6 +5,7 @@ services:
     image: registry.smartgms.in/product/surveilai-web:latest
     container_name: surveil-ai-web-device
     environment:
+      - TZ=Asia/Kolkata
       - VITE_API_URL=${VITE_API_URL}
       - VITE_USER_API_URL=${VITE_USER_API_URL}
       - VITE_MASTER_API_URL=${VITE_MASTER_API_URL}

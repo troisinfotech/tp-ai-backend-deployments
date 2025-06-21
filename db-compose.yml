@@ -7,6 +7,7 @@ services:
     hostname: pg-master
     container_name: pg-master
     environment:
+      - TZ=Asia/Kolkata
       - POSTGRESQL_USERNAME=postgres
       - POSTGRESQL_PASSWORD=GvrnMeAxwfbKFr4w
       - POSTGRESQL_POSTGRES_PASSWORD=GvrnMeAxwfbKFr4w
