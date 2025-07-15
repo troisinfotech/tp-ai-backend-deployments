@@ -5,13 +5,14 @@ services:
     image: registry.smartgms.in/product/surveilai-web:latest
     container_name: surveil-ai-web-device
     environment:
+      - TZ=Asia/Kolkata
       - VITE_API_URL=${VITE_API_URL}
       - VITE_USER_API_URL=${VITE_USER_API_URL}
       - VITE_MASTER_API_URL=${VITE_MASTER_API_URL}
       - VITE_ANALYTICS_API_URL=${VITE_ANALYTICS_API_URL}
       - VITE_LICENCE_API_URL=${VITE_LICENCE_API_URL}
     ports:
-      - 3000:80
+      - 80:80
     restart: always
-
+    network_mode: "host"
 

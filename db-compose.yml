@@ -11,25 +11,28 @@ services:
       - POSTGRESQL_PASSWORD=GvrnMeAxwfbKFr4w
       - POSTGRESQL_POSTGRES_PASSWORD=GvrnMeAxwfbKFr4w
       - POSTGRESQL_DATABASE=postgres
+      - TZ=Asia/Kolkata
     ports:
       - 5432:5432
     configs:
       - source: pg_extended_conf
         target: /opt/bitnami/postgresql/conf/conf.d/extended.conf
     volumes:
-      - /opt/deployments/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - /opt/deployments/tp-ai-backend-deployments/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - postgresql_data:/bitnami/postgresql
-    networks:
-      - tp_network
+    network_mode: "host"
+
+#    networks:
+#      - tp_network
 
 configs:
   pg_extended_conf:
-    file: /opt/deployments/postgres/extended.conf
+    file: /opt/deployments/tp-ai-backend-deployments/postgres/extended.conf
 
 volumes:
   postgresql_data:
     external: true
 
-networks:
-  tp_network:
-    external: true
+#networks:
+#  tp_network:
+#    external: true
