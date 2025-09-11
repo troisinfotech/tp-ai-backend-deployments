@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   surveil-ai-web-device:
-    image: registry.smartgms.in/product/surveilai-web:latest
+    image: registry.smartgms.in/product/surveilai-web:latest-arm64
     container_name: surveil-ai-web-device
     environment:
       - TZ=Asia/Kolkata
